@@ -1,9 +1,5 @@
-package cm.adacorp.gestionetudiant.entity;
+package cm.adacorp.gestionetudiant.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,15 +9,10 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Student {
-    @Id
-    @GeneratedValue
-    @JsonIgnore
-    private UUID studentId;
+public class StudentDto {
+
     private String prenom;
     private String nom;
-
     private String matricule;
     private String filiere;
     private String email;
