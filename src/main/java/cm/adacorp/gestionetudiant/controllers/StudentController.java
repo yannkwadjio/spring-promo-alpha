@@ -41,4 +41,12 @@ public class StudentController {
     public Student getStudentByMatricule(@PathVariable("matricule") String matricule){
         return studentService.getStudentByMatricule(matricule);
     }
+
+    // Mise a jour sún etudiant
+    @PutMapping("{matricule}")
+    public Student updateStudentByMatricule(@PathVariable("matricule") String matricule,
+                                            @RequestBody Student student){
+        return studentService.updateStudentByMatricule(matricule, student);
+
+    }
 }

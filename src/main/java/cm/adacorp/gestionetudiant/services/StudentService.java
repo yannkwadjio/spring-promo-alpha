@@ -53,4 +53,18 @@ public class StudentService {
 
         return studentRepository.findByMatricule(matricule);
     }
+
+    public Student updateStudentByMatricule(String matricule, Student student) {
+        Student existingStudent = studentRepository.findByMatricule(matricule);
+        if(!studentRepository.existsById(existingStudent.getStudentId())){
+            throw new RuntimeException("Etudiant inexistant dnas la BD");
+        }
+
+        existingStudent.setMatricule(student.getMatricule());
+        existingStudent.setNom(student.getNom());
+        existingStudent.setEmail(student.getEmail());
+        existingStudent.setTelephone(student.getTelephone());
+
+        return studentRepository.save(existingStudent);
+    }
 }
