@@ -1,22 +1,13 @@
-package cm.adacorp.gestionetudiant.entity;
+package cm.adacorp.gestionetudiant.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Departement {
-    @Id
-    @GeneratedValue
-    UUID codeDepartement;
+public class DepartementDto {
     String nom;
     String responsable;
     int nbreEnseignant;
@@ -24,5 +15,4 @@ public class Departement {
     String filiere;
     int Telephone;
     String email;
-
 }
