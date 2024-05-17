@@ -9,7 +9,7 @@ import java.util.*;
 
 @Service
 public class DepartementService {
-    private final DepartementRepo departementRepo;
+    DepartementRepo departementRepo;
 
     public DepartementService(DepartementRepo departementRepo) {
         this.departementRepo = departementRepo;
@@ -19,8 +19,8 @@ public class DepartementService {
         List<Departement> listDepartement = departementRepo.findAll();
         List<DepartementDto> listDepartementDTO = new ArrayList<>();
         for (Departement departement : listDepartement) {
-            listDepartementDTO.add(new DepartementDto(departement.getNom(),
-                    departement.getResponsable(),
+            listDepartementDTO.add(new DepartementDto(departement.getNomDeparement(),
+                    departement.getResponsableDepartement(),
                     departement.getNbreEnseignant(),
                     departement.getNbreEtudiant(),
                     departement.getFiliere(),
@@ -52,27 +52,20 @@ public class DepartementService {
 
 
     public Departement updateDepartement(UUID codeDep, Departement departement) {
-        try {
-            Optional<Departement> existingDepartement = departementRepo.findById(codeDep);
-            if (existingDepartement.isPresent()) {
-                Departement depToUpdate = existingDepartement.get();
-                depToUpdate.setNom(departement.getNom());
-                depToUpdate.setResponsable(departement.getResponsable());
-                depToUpdate.setNbreEtudiant(departement.getNbreEtudiant());
-                depToUpdate.setNbreEnseignant(departement.getNbreEnseignant());
-                depToUpdate.setFiliere(departement.getFiliere());
-                depToUpdate.setTelephone(departement.getTelephone());
-                depToUpdate.setEmail(departement.getEmail());
-                // Continue with other fields to update...
-                return departementRepo.save(depToUpdate);
-            } else {
-                throw new RuntimeException("Departement not found with id " + codeDep);
-            }
-        } catch (Exception e) {
-            // Log the exception and rethrow it or handle it accordingly
-            e.printStackTrace();
-            throw new RuntimeException("Failed to update departement", e);
-        }
+        Departement existDepartement=departementRepo.findById(codeDep)
+                .orElseThrow(()->new RuntimeException("Departement non trouvé"));
+
+        existDepartement.setNomDeparement(departement.getNomDeparement());
+        existDepartement.setResponsableDepartement(departement.getResponsableDepartement());
+        existDepartement.setNbreEnseignant(departement.getNbreEnseignant());
+        existDepartement.setNbreEtudiant(departement.getNbreEtudiant());
+        existDepartement.setFiliere(departement.getFiliere());
+        existDepartement.setTelephone(departement.getTelephone());
+        existDepartement.setEmail(departement.getEmail());
+
+        return departementRepo.save(existDepartement);
     }
+
+
 
 }

@@ -7,22 +7,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Departement {
+public class Filiere {
     @Id
     @GeneratedValue
-    UUID codeDepartement;
-    String nomDeparement;
-    String responsableDepartement;
-    int nbreEnseignant;
+    int id;
+    String nomFiliere;
+    String codeFiliere;
+    int nbCours;
     int nbreEtudiant;
-    int filiere;
-    int Telephone;
-    String email;
+    int nbreEnseignant;
 
 }

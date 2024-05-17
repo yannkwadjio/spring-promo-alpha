@@ -11,43 +11,41 @@ import java.util.Set;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/Departement")
+@RequestMapping("/api/v1/departement")
 public class DepartementController {
-    private final DepartementService departementService ;
+    DepartementService departementService;
 
     public DepartementController(DepartementService departementService) {
         this.departementService = departementService;
     }
 
     @GetMapping("get-all")
-    public List<DepartementDto> getAllDepartement(Departement departement){
+    public List<DepartementDto> getAllDepartement(Departement departement) {
         return departementService.getAllDepartement();
     }
 
     @PostMapping("create")
-    public Departement createDepartement(@RequestBody Departement departement){
+    public Departement createDepartement(@RequestBody Departement departement) {
         return departementService.createDepartement(departement);
     }
-@DeleteMapping("{id}")
-    public String deleteDepartement(@PathVariable("id") UUID codeDepartement){
-      departementService.deleteDepartement(codeDepartement);
+
+    @DeleteMapping("{id}")
+    public String deleteDepartement(@PathVariable("id") UUID codeDepartement) {
+        departementService.deleteDepartement(codeDepartement);
         return "suppression effectuée avec succès";
-}
+    }
 
-@GetMapping("{id}")
- public List<Departement> listDepartement(@PathVariable("id") UUID codeDepartement) {
-return departementService.listDepartement(codeDepartement);
-  }
-
-  @PutMapping("{id}")
-    public Departement updateDepartement(@PathVariable("id") UUID codeDep,@RequestBody Departement departement){
-
-        return departementService.updateDepartement(codeDep,departement);
-  }
+    @GetMapping("{id}")
+    public List<Departement> listDepartement(@PathVariable("id") UUID codeDepartement) {
+        return departementService.listDepartement(codeDepartement);
+    }
 
 
+    @PutMapping("{id}")
+    public Departement updateDepartement(@PathVariable("id") UUID codeDep, @RequestBody Departement departement) {
 
-
+        return departementService.updateDepartement(codeDep, departement);
+    }
 
 
 }
