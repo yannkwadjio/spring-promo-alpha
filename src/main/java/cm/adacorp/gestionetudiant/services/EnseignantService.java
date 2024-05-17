@@ -38,9 +38,8 @@ public class EnseignantService {
         );
     }
 
-    public void deleteEnseignantById(int idEnseignant, String statut) {
+    public void deleteEnseignantById(int idEnseignant) {
         if(enseignantRepo.existsById(idEnseignant)){
-            statut="ok";
             enseignantRepo.deleteById(idEnseignant);
     }
     }

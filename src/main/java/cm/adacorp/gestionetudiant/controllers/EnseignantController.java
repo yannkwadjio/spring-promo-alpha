@@ -32,13 +32,9 @@ public class EnseignantController {
     }
 
     @DeleteMapping("{idEnseignant}")
-    public String deleteEnseignantById(@PathVariable("idEnseignant") int idEnseignant, String statut){
-        enseignantService.deleteEnseignantById(idEnseignant,statut);
-        String state = null;
-        if(statut.equals("ok")){
-         state="Suppression effectué avec succès";
-        }
-        return state;
+    public String deleteEnseignantById(@PathVariable("idEnseignant") int idEnseignant){
+        enseignantService.deleteEnseignantById(idEnseignant);
+        return "Suppression effectué avec succès";
     }
 
     @PutMapping("{idEnseignant}")
